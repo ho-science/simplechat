@@ -19,7 +19,7 @@ bedrock_client = None
 
 # モデルID
 #MODEL_ID = os.environ.get("MODEL_ID", "us.amazon.nova-lite-v1:0")
-API_URL = "https://b464-34-148-112-206.ngrok-free.app"
+API_URL = "https://c231-34-127-123-58.ngrok-free.app"
 
 def lambda_handler(event, context):
     try:
@@ -90,18 +90,18 @@ def lambda_handler(event, context):
         #    contentType="application/json"
         #)
 
-        # APIfastを呼び出し
+        # FastAPIを呼び出し
         request = urllib.request.Request(
             API_URL,
             data = json.dumps(request_payload).encode("utf-8"),
-            headers = {"Content-Type"="application/json"}
+            headers = {"Content-Type":"application/json"},
             method = "POST"
              )
         
         
         # レスポンスを解析
         #response_body = json.loads(response['body'].read())
-        with urllib.request.utlopen(request) as response:
+        with urllib.request.urlopen(request) as response:
             response_body = json.loads(response.read().decode("utf-8"))
         print("Bedrock response:", json.dumps(response_body, default=str))
         
